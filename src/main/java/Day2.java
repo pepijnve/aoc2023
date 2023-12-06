@@ -2,15 +2,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Day2 {
-    public static int processInput(InputStream in, int redAvailable, int greenAvailable, int blueAvailable) throws IOException {
-        BufferedReader r = new BufferedReader(new InputStreamReader(in));
+    public static int processInput(List<String> lines, int redAvailable, int greenAvailable, int blueAvailable) throws IOException {
         int value = 0;
-        String line;
-        while ((line = r.readLine()) != null) {
+        for (String line : lines) {
             Game g = parseGame(line);
 
             if (g.red() > redAvailable || g.green() > greenAvailable || g.blue() > blueAvailable) {
@@ -20,11 +19,9 @@ public class Day2 {
         return value;
     }
 
-    public static int processInputAlt(InputStream in) throws IOException {
-        BufferedReader r = new BufferedReader(new InputStreamReader(in));
+    public static int processInputAlt(List<String> lines) throws IOException {
         int value = 0;
-        String line;
-        while ((line = r.readLine()) != null) {
+        for (String line : lines) {
             Game g = parseGame(line);
 
             int power = g.red() * g.green() * g.blue();

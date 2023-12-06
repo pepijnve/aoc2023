@@ -2,24 +2,23 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Day1 {
-    public static int processInput(InputStream in) throws IOException {
-        return processInput(in, "[0-9]");
+    public static int processInput(List<String> lines) throws IOException {
+        return processInput(lines, "[0-9]");
     }
 
-    public static int processInputAlt(InputStream in) throws IOException {
-        return processInput(in, "[0-9]|one|two|three|four|five|six|seven|eight|nine");
+    public static int processInputAlt(List<String> lines) throws IOException {
+        return processInput(lines, "[0-9]|one|two|three|four|five|six|seven|eight|nine");
     }
 
-    private static int processInput(InputStream in, String regex) throws IOException {
-        BufferedReader r = new BufferedReader(new InputStreamReader(in));
+    private static int processInput(List<String> lines, String regex) throws IOException {
         int value = 0;
         Pattern pattern = Pattern.compile(regex);
-        String line;
-        while ((line = r.readLine()) != null) {
+        for (String line : lines) {
             Matcher matcher = pattern.matcher(line);
             if (!matcher.find()) {
                 continue;
